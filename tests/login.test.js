@@ -3,7 +3,8 @@ import { sleep, check } from 'k6';
 
 export const options = {
 
-    iterations: 50,
+    vus: 10,
+    duration: '30s',
 
     thresholds: {
         http_req_duration: ['p(95)<200'], // 95% of requests should be below 200ms

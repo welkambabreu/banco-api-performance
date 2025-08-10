@@ -1,19 +1,14 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
-const postLogin = JSON.parse(open('../fixtures/postLogin.json'));   
 
 export const options = {
-    
-    iterations:1,
-   /*stages: [
-        
-     { duration: '10s', target: 10 },
-     { duration: '20s', target: 10 },
-      
-    ],*/
+
+    iterations: 50,
+
     thresholds: {
-        http_req_duration: ['p(90)<3000', 'max<5000'],
-        http_req_failed: ['rate<0.01'],
+        http_req_duration: ['p(95)<200'], // 95% of requests should be below 200ms
+        http_req_failed: ['rate<0.01'], // http errors should be less than 1%
+
     },
 };
 
@@ -21,7 +16,10 @@ export default function () {
 
     const url = 'http://localhost:3000/login';
 
-    const payload = JSON.stringify({postLogin});
+    const payload = JSON.stringify({
+        username: 'julio.lima',
+        senha: '123456',
+    });
 
     const params = {
         headers: {
@@ -30,12 +28,13 @@ export default function () {
     };
 
     const res = http.post(url, payload, params);
-
     check(res, {
-        'Validar que o status é 200': (r) => r.status === 200,
-        'Validar que o token é string': (r) => typeof (r.json().token) == 'string'
 
-    });
+        'Validar que o status é 200': (r) => r.status === 200,
+        'validar que o token é string': (r) => typeof (r.json().token) == 'string'
+
+    })
+
 
     sleep(1);
 }

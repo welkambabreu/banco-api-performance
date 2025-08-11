@@ -1,15 +1,15 @@
 Testes de Performance com JavaScript e K6
 
-Introdução
+📌 Introdução
 Este repositório contém testes de performance realizados com a ferramenta K6, utilizando scripts em JavaScript. O objetivo é avaliar o desempenho de APIs e endpoints, garantindo a estabilidade e a eficiência do sistema sob diferentes cargas.
 
-Tecnologias Utilizadas
+🛠 Tecnologias Utilizadas
 •	JavaScript (para scripts de teste)
 •	K6 (ferramenta de testes de carga)
 •	Node.js (para possíveis scripts auxiliares)
 •	GitHub (repositório de código)
 
-Estrutura do Repositório
+📂 Estrutura do Repositório
 •	fixtures/- Pasta contendo os dados de acesso;
 •	tests/- Pasta contendo os scripts de testes específicos para diferentes endpoints;
 •	utils/- Pasta contendo funções reutilizáveis;
@@ -30,7 +30,6 @@ git clone https://github.com/welkambabreu/banco-api-performance.git
 cd banco-api-performance
 # Instalar dependências
 npm install
-
 
 🚀 Execução dos Testes
 O K6 exige que seja definida a variável de ambiente BASE_URL para apontar para o endpoint base da API a ser testada.
